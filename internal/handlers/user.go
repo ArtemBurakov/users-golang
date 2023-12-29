@@ -91,8 +91,7 @@ func UpdateUser(c *gin.Context) {
 	}
 
 	user, err := UsersQ(c).Update(id, data.User{
-		Name:  request.Name,
-		Email: request.Email,
+		Name: request.Name,
 	})
 	if err != nil {
 		if errors.Is(err, memoryStore.NotFoundError) {

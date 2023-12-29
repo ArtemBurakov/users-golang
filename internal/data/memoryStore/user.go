@@ -5,6 +5,8 @@ import (
 	"users/internal/data"
 )
 
+var dbId = 1
+
 // usersQ is an implementation of the data.UserQ interface
 // that interacts with an in-memory data store (MemoryStore).
 type usersQ struct {
@@ -28,12 +30,14 @@ func (u *usersQ) New() data.UserQ {
 // Add adds a new user to the in-memory data store.
 func (u *usersQ) Add(user data.User) (data.User, error) {
 	var newUser data.User
-	newUser.ID = len(u.db.users) + 1
+	newUser.ID = dbId
 	newUser.Name = user.Name
 	newUser.Email = user.Email
 	newUser.CreatedAt = time.Now()
 	newUser.UpdatedAt = time.Now()
 	u.db.users = append(u.db.users, newUser)
+
+	dbId++
 
 	return newUser, nil
 }
@@ -71,9 +75,6 @@ func (u *usersQ) Update(id int, userUpdate data.User) (data.User, error) {
 		if user.ID == id {
 			if userUpdate.Name != "" {
 				u.db.users[i].Name = userUpdate.Name
-			}
-			if userUpdate.Email != "" {
-				u.db.users[i].Email = userUpdate.Email
 			}
 			u.db.users[i].UpdatedAt = time.Now()
 

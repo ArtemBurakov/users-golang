@@ -14,8 +14,8 @@ Before running the project, ensure that you have the following installed on your
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/yourusername/users-api-golang.git
-   cd users-api-golang
+   git clone https://github.com/ArtemBurakov/users-golang.git
+   cd users-golang
 
 2. Create a .env file in the project root and set the required environment variables
     ```bash
